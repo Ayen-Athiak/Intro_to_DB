@@ -19,10 +19,15 @@ def create_database():
             print("Database 'alx_book_store' created successfully!")
     
     except Error as e:
-      
+        # Print error message if there is an issue connecting or executing commands
         print(f"Error: {e}")
-    
-   
+
+    finally:
+        # Close the cursor and connection
+        if cursor:
+            cursor.close()
+        if connection and connection.is_connected():
+            connection.close()
 
 if __name__ == "__main__":
     create_database()
